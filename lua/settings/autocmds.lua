@@ -30,4 +30,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.cmd('autocmd VimEnter * silent !set-nvim-icon') --set nvim icon when entering nvim
+vim.cmd('autocmd VimEnter * silent !set-icon nvim') --set nvim icon when entering nvim
