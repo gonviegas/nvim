@@ -205,6 +205,7 @@ map('n', '<space>3t', ':ToggleTerm 3<CR>', opts, "TERMINAL", "terminal_3_toggle"
 function _G.set_terminal_keymaps()
   local nobufopts = { buffer = 0 }
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], nobufopts)
+  vim.keymap.set('t', '<A-S-c>', [[<C-c> exit<CR>]], nobufopts)
   vim.keymap.set('t', '<A-k>', [[<C-\><C-n> | <Cmd>wincmd k<CR>]], nobufopts)
   vim.keymap.set('t', '<A-j>', [[<C-\><C-n> | <Cmd>wincmd j<CR>]], nobufopts)
   vim.keymap.set('t', '<A-h>', [[<C-\><C-n> | <Cmd>wincmd h<CR>]], nobufopts)

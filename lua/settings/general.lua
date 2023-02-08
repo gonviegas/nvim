@@ -11,9 +11,10 @@ vim.o.mouse = 'a'
 -- Enable break indent
 vim.o.breakindent = true
 vim.o.smartindent = true
--- vim.o.smarttab = true
+vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.cursorline = true
 

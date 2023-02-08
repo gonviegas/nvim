@@ -15,6 +15,12 @@ return {
         title = false,
         border = "rounded"
       },
+      diagnostic = {
+        show_source = true,
+        custom_msg = 'Diagnostic:',
+        custom_fix = 'Fix:',
+        border_follow = false
+      }
     })
   end
 }

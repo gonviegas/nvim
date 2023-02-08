@@ -240,7 +240,7 @@ return {
     }
 
     local Navic = {
-      condition = require("nvim-navic").is_available,
+      condition = function() return require("nvim-navic").is_available() end,
       static = {
         -- create a type highlight map
         type_hl = {
@@ -276,10 +276,10 @@ return {
           return bit.bor(bit.lshift(line, 16), bit.lshift(col, 6), winnr)
         end,
         -- line: 16 bit (65535); col: 10 bit (1023); winnr: 6 bit (63)
-        dec = function(c)
-          local line = bit.rshift(c, 16)
-          local col = bit.band(bit.rshift(c, 6), 1023)
-          local winnr = bit.band(c, 63)
+        dec = function(e)
+          local line = bit.rshift(e, 16)
+          local col = bit.band(bit.rshift(e, 6), 1023)
+          local winnr = bit.band(e, 63)
           return line, col, winnr
         end
       },
@@ -287,19 +287,19 @@ return {
         local data = require("nvim-navic").get_data() or {}
         local children = {}
         -- create a child for each level
-        for i, d in ipairs(data) do
+        for i, e in ipairs(data) do
           -- encode line and column numbers into a single integer
-          local pos = self.enc(d.scope.start.line, d.scope.start.character, self.winnr)
+          local pos = self.enc(e.scope.start.line, e.scope.start.character, self.winnr)
           local child = {
             {
-              provider = d.icon,
-              hl = self.type_hl[d.type],
+              provider = e.icon,
+              hl = self.type_hl[e.type],
             },
             {
               -- escape `%`s (elixir) and buggy default separators
-              provider = d.name:gsub("%%", "%%%%"):gsub("%s*->%s*", ''),
+              provider = e.name:gsub("%%", "%%%%"):gsub("%s*->%s*", ''),
               -- highlight icon only or location name as well
-              -- hl = self.type_hl[d.type],
+              -- hl = self.type_hl[e.type],
 
               on_click = {
                 -- pass the encoded position through minwid
@@ -335,7 +335,7 @@ return {
 
 
     local NavicInactive = {
-      condition = require("nvim-navic").is_available,
+      condition = function() return require("nvim-navic").is_available() end,
       static = {
         -- create a type highlight map
         type_hl = {
@@ -371,10 +371,10 @@ return {
           return bit.bor(bit.lshift(line, 16), bit.lshift(col, 6), winnr)
         end,
         -- line: 16 bit (65535); col: 10 bit (1023); winnr: 6 bit (63)
-        dec = function(c)
-          local line = bit.rshift(c, 16)
-          local col = bit.band(bit.rshift(c, 6), 1023)
-          local winnr = bit.band(c, 63)
+        dec = function(e)
+          local line = bit.rshift(e, 16)
+          local col = bit.band(bit.rshift(e, 6), 1023)
+          local winnr = bit.band(e, 63)
           return line, col, winnr
         end
       },
@@ -382,19 +382,19 @@ return {
         local data = require("nvim-navic").get_data() or {}
         local children = {}
         -- create a child for each level
-        for i, d in ipairs(data) do
+        for i, e in ipairs(data) do
           -- encode line and column numbers into a single integer
-          local pos = self.enc(d.scope.start.line, d.scope.start.character, self.winnr)
+          local pos = self.enc(e.scope.start.line, e.scope.start.character, self.winnr)
           local child = {
             {
-              provider = d.icon,
-              hl = self.type_hl[d.type],
+              provider = e.icon,
+              hl = self.type_hl[e.type],
             },
             {
               -- escape `%`s (elixir) and buggy default separators
-              provider = d.name:gsub("%%", "%%%%"):gsub("%s*->%s*", ''),
+              provider = e.name:gsub("%%", "%%%%"):gsub("%s*->%s*", ''),
               -- highlight icon only or location name as well
-              -- hl = self.type_hl[d.type],
+              -- hl = self.type_hl[e.type],
 
               on_click = {
                 -- pass the encoded position through minwid
@@ -826,7 +826,7 @@ return {
         end,
         utils.surround({ "", "" }, c.gray3b, FileFlagsBlock),
         FileNameBlockInactive,
-        utils.surround({ "", "" }, d.bg, NavicInactiveBlock),
+	      utils.surround({ "", "" }, d.bg, NavicInactiveBlock),
       },
       {
         -- A winbar for regular files
