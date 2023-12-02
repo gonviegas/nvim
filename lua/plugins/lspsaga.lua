@@ -1,10 +1,11 @@
 return {
-  'glepnir/lspsaga.nvim',
-  event = 'BufRead',
+  "glepnir/lspsaga.nvim",
+  event = "BufRead",
+  enable = false,
   config = function()
     vim.cmd("hi! link SagaNormal NormalFloat")
 
-    require('lspsaga').setup({
+    require("lspsaga").setup({
       symbol_in_winbar = {
         enable = false,
       },
@@ -13,14 +14,18 @@ return {
       },
       ui = {
         title = false,
-        border = "rounded"
+        border = "rounded",
       },
       diagnostic = {
         show_source = true,
-        custom_msg = 'Diagnostic:',
-        custom_fix = 'Fix:',
-        border_follow = false
-      }
+        custom_msg = "Diagnostic:",
+        custom_fix = "Fix:",
+        border_follow = false,
+      },
+      rename_action_keys = {
+        quit = "<Esc>",
+        exec = "<CR>",
+      },
     })
-  end
+  end,
 }

@@ -1,33 +1,40 @@
 local c = require("settings.colors").Color()
 local d = require("settings.colors").Default()
-
-vim.cmd('sign define DiagnosticSignError text= texthl=DiagnosticSignError')
-vim.cmd('sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn')
-vim.cmd('sign define DiagnosticSignHint text= texthl=DiagnosticSignHint')
-vim.cmd('sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo')
-vim.cmd('hi DiagnosticError guifg=' .. d.diag_error .. ' guibg=NONE')
-vim.cmd('hi DiagnosticWarn guifg=' .. d.diag_warn .. ' guibg=NONE')
-vim.cmd('hi DiagnosticHint guifg=' .. d.diag_hint .. ' guibg=NONE')
-vim.cmd('hi DiagnosticInfo guifg=' .. d.diag_info .. ' guibg=NONE')
-vim.cmd('hi DiagnosticVirtualTextError guifg=' .. d.diag_error .. ' guibg=' .. d.diag_error_bg)
-vim.cmd('hi DiagnosticVirtualTextWarn guifg=' .. d.diag_warn .. ' guibg=' .. d.diag_warn_bg)
-vim.cmd('hi DiagnosticVirtualTextHint guifg=' .. d.diag_hint .. ' guibg=' .. d.diag_hint_bg)
-vim.cmd('hi DiagnosticVirtualTextInfo guifg=' .. d.diag_info .. ' guibg=' .. d.diag_info_bg)
-vim.cmd('hi DiagnosticUnderlineError guisp=' .. d.diag_error)
-vim.cmd('hi DiagnosticUnderlineWarn guisp=' .. d.diag_warn)
-vim.cmd('hi DiagnosticUnderlineHint guisp=' .. d.diag_hint)
-vim.cmd('hi DiagnosticUnderlineInfo guisp=' .. d.diag_info)
-
-vim.cmd("hi CursorLine guibg=#303030")
-vim.cmd("hi SignColumn guibg=none")
+--
+vim.cmd("sign define DiagnosticSignError text=󰅚 texthl=DiagnosticSignError")
+vim.cmd("sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn")
+vim.cmd("sign define DiagnosticSignHint text=󰌶 texthl=DiagnosticSignHint")
+vim.cmd("sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo")
+vim.cmd("hi DiagnosticError guifg=" .. d.diag_error .. " guibg=NONE")
+vim.cmd("hi DiagnosticWarn guifg=" .. d.diag_warn .. " guibg=NONE")
+vim.cmd("hi DiagnosticHint guifg=" .. d.diag_hint .. " guibg=NONE")
+vim.cmd("hi DiagnosticInfo guifg=" .. d.diag_info .. " guibg=NONE")
+vim.cmd("hi DiagnosticSignError guifg=" .. d.diag_error .. " guibg=NONE")
+vim.cmd("hi DiagnosticSignWarn guifg=" .. d.diag_warn .. " guibg=NONE")
+vim.cmd("hi DiagnosticSignHint guifg=" .. d.diag_hint .. " guibg=NONE")
+vim.cmd("hi DiagnosticSignInfo guifg=" .. d.diag_info .. " guibg=NONE")
+vim.cmd("hi DiagnosticVirtualTextError guifg=" .. d.diag_error .. " guibg=" .. d.diag_error_bg)
+vim.cmd("hi DiagnosticVirtualTextWarn guifg=" .. d.diag_warn .. " guibg=" .. d.diag_warn_bg)
+vim.cmd("hi DiagnosticVirtualTextHint guifg=" .. d.diag_hint .. " guibg=" .. d.diag_hint_bg)
+vim.cmd("hi DiagnosticVirtualTextInfo guifg=" .. d.diag_info .. " guibg=" .. d.diag_info_bg)
+vim.cmd("hi DiagnosticUnderlineError guisp=" .. d.diag_error)
+vim.cmd("hi DiagnosticUnderlineWarn guisp=" .. d.diag_warn)
+vim.cmd("hi DiagnosticUnderlineHint guisp=" .. d.diag_hint)
+vim.cmd("hi DiagnosticUnderlineInfo guisp=" .. d.diag_info)
+vim.cmd("hi DiagnosticUnnecessary guisp=#909090")
+--
 vim.cmd("hi GitSignsAdd guifg=" .. d.git_add .. " guibg=none")
 vim.cmd("hi GitSignsChange guifg=" .. d.git_change .. " guibg=none")
 vim.cmd("hi GitSignsDelete guifg=" .. d.git_del .. " guibg=none")
 vim.cmd("hi GitSignsCurrentLineBlame guifg=" .. c.gray6b)
-
-vim.cmd("hi! Normal guibg=" .. d.normal)
-vim.cmd("hi! NormalNC guibg=" .. d.normal)
-vim.cmd("hi! NormalFloat guibg=" .. d.normal)
+--
+vim.cmd("hi! Normal guibg=" .. d.normal .. " guifg=" .. d.text)
+vim.cmd("hi! link NormalNC Normal")
+vim.cmd("hi! link NormalFloat Normal")
+vim.cmd("hi! LineNr guibg=" .. d.normal)
+vim.cmd("hi! CursorLineNr guibg=" .. d.normal .. "guifg=" .. d.text2)
+vim.cmd("hi CursorLine guibg=#252525")
+vim.cmd("hi! SignColumn guibg=" .. d.normal)
 vim.cmd("hi! FloatBorder guibg=none guifg=" .. d.text)
 vim.cmd("hi! MsgArea guibg=" .. d.normal)
 vim.cmd("hi! ModeMsg guibg=" .. d.normal)
@@ -44,36 +51,77 @@ vim.cmd("hi! StatusLineNC guibg=" .. d.bg .. " guifg=" .. d.textNC .. " gui=none
 vim.cmd("hi! TabLine guibg=" .. d.bg)
 vim.cmd("hi! TabLineFill cterm=none gui=none guibg=" .. d.bg .. " guifg=" .. d.textNC)
 
-vim.cmd("hi! NvimTreeNormal guibg=" .. d.bg .. " guifg=none")
-vim.cmd("hi! NvimTreeNormalNC guibg=" .. d.bg)
-vim.cmd("hi! NvimTreeEndOfBuffer guifg=" .. c.gray .. " guibg=" .. d.bg)
-vim.cmd("hi! NvimTreeWinSeparator guibg=" .. d.bg)
+vim.cmd("hi! TermNormal guibg=" .. d.bg2)
+vim.cmd("hi! TermSignColumn guibg=" .. d.bg2)
 
+vim.cmd("hi! NvimTreeNormal guibg=" .. d.bg .. " guifg=" .. d.text2)
+vim.cmd("hi! link NvimTreeNormalNC NvimTreeNormal")
+vim.cmd("hi! NvimTreeEndOfBuffer guifg=" .. c.gray .. " guibg=" .. d.bg)
+vim.cmd("hi! NvimTreeWinSeparator none")
+vim.cmd("hi! NvimTreeIndentMarker guifg=" .. c.gray5a)
+
+-- vim.cmd("hi! BufferLineFill guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineOffsetSeparator none guifg=" .. d.bg .. " guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineSeparatorSelected none guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineSeparator none guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineSeparatorVisible none guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineBufferVisible gui=none" .. " guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineBufferSelected gui=bold guifg=" .. d.text .. " guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineDuplicate gui=italic")
+-- vim.cmd("hi! BufferLineDuplicateSelected gui=italic guifg=" .. d.text .. " guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineDuplicateVisible gui=italic guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineCloseButtonSelected guifg=" .. d.text .. " guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineCloseButtonVisible gui=none" .. " guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineIndicatorSelected guifg=" .. d.text .. " guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineIndicatorVisible gui=none" .. " guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineModifiedSelected guifg=" .. d.text .. " guibg=" .. d.normal)
+-- vim.cmd("hi! BufferLineModifiedVisible gui=none" .. " guibg=" .. d.bg)
+-- vim.cmd("hi! BufferLineBackground gui=none")
+--
 vim.cmd("hi! Search guifg=#282828 guibg=#fabd2f")
 
-vim.cmd("hi! TreesitterContext gui=bold guibg=#474947")
-vim.cmd("hi! TreesitterContextLineNumber gui=bold guifg=" .. d.textNC .. " guibg=#474947")
-vim.cmd("hi! TreesitterContextBottom gui=bold guibg=#353735")
+vim.cmd("hi! TreesitterContext guibg=" .. d.bg2)
+vim.cmd("hi! TreesitterContextLineNumber guifg=#525053 guibg=" .. d.bg2)
+vim.cmd("hi TreesitterContextBottom gui=underline guisp=#fc9867")
 
 vim.cmd("hi! EyelinerPrimary guifg=#ff00ff gui=bold")
 vim.cmd("hi! EyelinerSecondary guifg=#00ffff gui=bold")
-vim.cmd("hi! TelescopeNormal guibg=none")
+vim.cmd("hi! TelescopeNormal guibg=" .. d.normal)
+vim.cmd("hi! TelescopeBorder guibg=" .. d.normal)
+vim.cmd("hi! TelescopeResultsNormal guibg=" .. d.normal)
+vim.cmd("hi! TelescopeResultsBorder guibg=" .. d.normal)
+vim.cmd("hi! TelescopePreviewNormal guibg=" .. d.normal)
+vim.cmd("hi! TelescopePreviewBorder guibg=" .. d.normal)
+vim.cmd("hi! TelescopePromptNormal guibg=" .. d.normal)
+vim.cmd("hi! TelescopePromptBorder guibg=" .. d.normal)
 
 vim.cmd("hi! link RenameNormal NormalFloat")
 vim.cmd("hi! link SagaBorder FloatBorder")
 
 vim.cmd("hi! IndentBlankLineChar guifg=" .. c.gray2a)
-vim.cmd("hi! IndentBlankLineContextChar guifg=#569cd6")
+vim.cmd("hi! IndentBlankLineContextChar guifg=#fc9867")
 
-vim.cmd [[
+vim.cmd([[
 highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
 highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
 highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
 highlight! CmpItemKindSnippet guibg=NONE guifg=#fadd2f
 highlight! link CmpItemKindInterface CmpItemKindVariable
 highlight! link CmpItemKindText CmpItemKindVariable
-]]
+]])
 
 vim.cmd("hi! FoldColumn guibg=" .. d.normal)
 vim.cmd("hi! Folded guibg=#252045")
 vim.cmd("hi! UfoFoldedBg guibg=#252045")
+
+vim.cmd("hi! LazyNormal guibg=" .. d.normal)
+
+vim.cmd("hi! link FidgetTask GitSignsChange")
+
+vim.cmd("hi! Type guifg=" .. d.text)
+vim.cmd("hi! Identifier guifg=" .. d.text)
+vim.cmd("hi! @parameter guifg=" .. d.text)
+vim.cmd("hi! @property guifg=" .. d.text)
+vim.cmd("hi! @variable guifg=" .. d.text)
+vim.cmd("hi! @lsp.typemod.class.defaultLibrary guifg=" .. d.text)
+vim.cmd("hi! IblScope guibg=clear guifg=" .. c.magenta)

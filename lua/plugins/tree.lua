@@ -1,8 +1,9 @@
 return {
-  'nvim-tree/nvim-tree.lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  "nvim-tree/nvim-tree.lua",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("nvim-tree").setup({
+      sync_root_with_cwd = true,
       diagnostics = {
         severity = {
           min = vim.diagnostic.severity.WARN,
@@ -10,10 +11,10 @@ return {
         },
         enable = true,
         icons = {
-          hint = "",
+          hint = "󰌶",
           info = "",
-          warning = "",
-          error = "",
+          warning = "",
+          error = "󰅚",
         },
       },
       renderer = {
@@ -26,7 +27,7 @@ return {
         icons = {
           git_placement = "after",
         },
-        root_folder_label = ":t",
+        root_folder_label = false,
       },
       filters = {
         custom = { "^\\.git" },
@@ -36,9 +37,8 @@ return {
       },
       view = {
         cursorline = true,
-        adaptive_size = false,
-        hide_root_folder = true,
-      }
+        adaptive_size = true,
+      },
     })
-  end
+  end,
 }

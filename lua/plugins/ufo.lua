@@ -1,9 +1,11 @@
-return { 'kevinhwang91/nvim-ufo',
-  dependencies = 'kevinhwang91/promise-async',
+return {
+  "kevinhwang91/nvim-ufo",
+  dependencies = "kevinhwang91/promise-async",
+  -- enabled = false,
   config = function()
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
-      local suffix = ('  ...   %d lines'):format(endLnum - lnum)
+      local suffix = ("  ...  󰁂 %d lines"):format(endLnum - lnum)
       local sufWidth = vim.fn.strdisplaywidth(suffix)
       local targetWidth = width - sufWidth
       local curWidth = 0
@@ -19,26 +21,26 @@ return { 'kevinhwang91/nvim-ufo',
           chunkWidth = vim.fn.strdisplaywidth(chunkText)
           -- str width returned from truncate() may less than 2nd argument, need padding
           if curWidth + chunkWidth < targetWidth then
-            suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
           end
           break
         end
         curWidth = curWidth + chunkWidth
       end
-      table.insert(newVirtText, { suffix, 'MoreMsg' })
+      table.insert(newVirtText, { suffix, "MoreMsg" })
       return newVirtText
     end
 
     -- global handler
     -- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
     -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
-    require('ufo').setup({
-      fold_virt_text_handler = handler
+    require("ufo").setup({
+      fold_virt_text_handler = handler,
     })
 
     -- buffer scope handler
     -- will override global handler if it is existed
     -- local bufnr = vim.api.nvim_get_current_buf()
     -- require('ufo').setFoldVirtTextHandler(bufnr, handler)
-  end
+  end,
 }

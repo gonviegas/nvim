@@ -14,11 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load before Lazy
 vim.o.termguicolors = true
-vim.g.mapleader = ','
-vim.g.maplocalleader = ' '
+vim.o.mousemoveevent = true
+vim.g.mapleader = ","
+vim.g.maplocalleader = " "
 
 -- Load Lazy
-require("lazy").setup('plugins', {
+require("lazy").setup("plugins", {
   ui = {
     wrap = false,
     border = "rounded",
@@ -26,6 +27,6 @@ require("lazy").setup('plugins', {
 })
 
 -- Load settings folder
-for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath('config') .. '/lua/settings', [[v:val =~ '\.lua$']])) do
-  require('settings.' .. file:gsub('%.lua$', ''))
+for _, file in ipairs(vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/settings", [[v:val =~ '\.lua$']])) do
+  require("settings." .. file:gsub("%.lua$", ""))
 end

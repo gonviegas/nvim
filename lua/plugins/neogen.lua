@@ -4,7 +4,7 @@ return {
   version = "*",
   config = function()
     require("neogen").setup({
-      snippet_engine = "luasnip"
+      snippet_engine = "luasnip",
     })
-  end
+  end,
 }

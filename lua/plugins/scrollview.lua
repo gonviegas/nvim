@@ -1,8 +1,13 @@
 return {
-  'dstein64/nvim-scrollview',
+  "dstein64/nvim-scrollview",
+  -- enabled = false,
   config = function()
     require("scrollview").setup({
-      column = 1
+      excluded_filetypes = { "NvimTree" },
+      current_only = true,
+      column = 1,
+      signs_on_startup = { "folds" },
+      winblend = 60,
     })
-  end
+  end,
 }

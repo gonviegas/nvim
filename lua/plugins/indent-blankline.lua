@@ -1,35 +1,32 @@
 return {
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+  "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
+  opts = {},
+  enabled = true,
   config = function()
-
-    local d = require("settings.colors").Default()
-
-    vim.cmd [[highlight IndentBlanklineIndent1 guifg=#181818 guibg=#181818 gui=nocombine]]
-    vim.cmd('highlight IndentBlanklineIndent2 guifg=' .. d.normal .. ' guibg=' .. d.normal .. ' gui=nocombine')
-    vim.cmd [[highlight IndentBlanklineContextChar1 guifg=#569cd6 guibg=#181818 gui=nocombine]]
-    vim.cmd('highlight IndentBlanklineContextChar2 guifg=#569cd6 guibg=' .. d.normal .. ' gui=nocombine')
-
-    require("indent_blankline").setup {
-      show_end_of_line = false,
-      show_current_context_start_on_current_line = true,
-      space_char_blankline = " ",
-      show_current_context = true,
-      show_current_context_start = false,
-      char = '',
-      context_char_list = { '▏', '▏' },
-      context_highlight_list = {
-        "IndentBlanklineContextChar1",
-        "IndentBlanklineContextChar2",
-      },
-      char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-      },
-      space_char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-      },
-      show_trailing_blankline_indent = false,
+    local highlight = {
+      "RainbowDelimiterRed",
+      "RainbowDelimiterYellow",
+      "RainbowDelimiterBlue",
+      "RainbowDelimiterOrange",
+      "RainbowDelimiterGreen",
+      "RainbowDelimiterViolet",
+      "RainbowDelimiterCyan",
     }
-  end
+    vim.g.rainbow_delimiters = { highlight = highlight }
+
+    require("ibl").setup({
+      indent = { char = "▏", tab_char = "▏" },
+      scope = {
+        char = "▏",
+        highlight = highlight,
+        show_start = true,
+        show_end = true,
+      },
+      debounce = 200,
+    })
+
+    local hooks = require("ibl.hooks")
+    hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+  end,
 }

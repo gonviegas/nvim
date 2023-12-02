@@ -3,13 +3,15 @@ module(..., package.seeall)
 function Color()
   local colors = {
     pink = "#dd77dd",
-    orange = "Orange",
+    orange = "#ffa500",
     green = "#88cc00",
     blue = "#00aaee",
     dark_blue = "#0050aa",
     magenta = "#dd25dd",
-    purple = "#5000b0",
+    -- purple = "#5000b0",
+    purple = "Purple",
     gray = "#504945",
+    gray0 = "#050505",
     gray1a = "#101010",
     gray1b = "#151515",
     gray2a = "#202020",
@@ -30,11 +32,15 @@ end
 function Default()
   local colors = {
     bg = Color().gray2a,
-    normal = "#101010",
+    bg2 = Color().gray1a,
+    normal = Color().gray0,
     normal2 = Color().gray3a,
-    text = "#eaeaea",
+    text = "#f0f0f0",
+    textAlt = "#aaaaaa",
     text2 = "#cfcfcf",
+    text2Alt = "#909090",
     textNC = "#b0b0b0",
+    textNCAlt = "#808080",
     git_del = "#fb4934",
     git_add = "#b8bb26",
     git_change = "#8ec07c",
@@ -45,7 +51,7 @@ function Default()
     diag_hint = "#cc00ff",
     diag_hint_bg = "#252030",
     diag_info = "#4bc1fe",
-    diag_info_bg = "#1e3135"
+    diag_info_bg = "#1e3135",
   }
   return colors
 end

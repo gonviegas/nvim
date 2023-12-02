@@ -1,5 +1,5 @@
 return {
-  'sindrets/winshift.nvim',
+  "sindrets/winshift.nvim",
   config = function()
     require("winshift").setup({
       highlight_moving_win = true, -- Highlight the window being moved
@@ -34,7 +34,7 @@ return {
       window_picker = function()
         return require("winshift.lib").pick_window({
           -- A string of chars used as identifiers by the window picker.
-          picker_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+          picker_chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ",
           filter_rules = {
             -- This table allows you to indicate to the window picker that a window
             -- should be ignored if its buffer matches any of the following criteria.
@@ -45,11 +45,11 @@ return {
             bufname = {}, -- List of vim regex patterns matching ignored buffer names
           },
           ---A function used to filter the list of selectable windows.
-          ---@param winids integer[] # The list of selectable window IDs.
-          ---@return integer[] filtered # The filtered list of window IDs.
-          filter_func = nil,
+          -- -@param winids integer[] # The list of selectable window IDs.
+          -- -@return integer[] filtered # The filtered list of window IDs.
+          -- filter_func = nil,
         })
       end,
     })
-  end
+  end,
 }

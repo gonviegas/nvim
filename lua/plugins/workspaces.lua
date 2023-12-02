@@ -1,9 +1,9 @@
 return {
-  'natecraddock/workspaces.nvim',
+  "natecraddock/workspaces.nvim",
   config = function()
     function NvimTreeOpen()
-      local nvimtree = require "nvim-tree"
-      local nvimtree_view = require "nvim-tree.view"
+      local nvimtree = require("nvim-tree")
+      local nvimtree_view = require("nvim-tree.view")
 
       if nvimtree_view.is_visible() then
         nvimtree.toggle()
@@ -16,7 +16,7 @@ return {
     require("workspaces").setup({
       hooks = {
         open = NvimTreeOpen,
-      }
+      },
     })
-  end
+  end,
 }

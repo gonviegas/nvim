@@ -6,5 +6,5 @@ return {
     mapper.setup({
       no_map = true,
     })
-  end
+  end,
 }

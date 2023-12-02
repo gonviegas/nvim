@@ -1,25 +1,26 @@
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
   group = highlight_group,
-  pattern = '*',
+  pattern = "*",
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   callback = function()
-    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
-      vim.api.nvim_command('silent update')
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" then
+      -- if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+      vim.api.nvim_command("silent update")
     end
   end,
 })
 
-vim.api.nvim_create_autocmd('ColorScheme', {
+vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.cmd("luafile ~/.config/nvim/lua/plugins/heirline.lua")
     vim.cmd("luafile ~/.config/nvim/lua/settings/highlights.lua")
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -30,4 +31,5 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
-vim.cmd('autocmd VimEnter * silent !set-icon nvim') --set nvim icon when entering nvim
+vim.cmd("autocmd VimEnter * silent !set-icon nvim") --set nvim icon when entering nvim
+vim.cmd("autocmd VimLeave * silent !set-icon kitty") --set nvim icon when entering nvim

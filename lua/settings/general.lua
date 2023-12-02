@@ -1,12 +1,15 @@
+-- Not show pressed keys
+vim.o.showcmd = false
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.o.number = true
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -27,13 +30,13 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 -- vim.o.background = "dark" -- or "light" for light mode
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 -- Nvim Tree
 vim.g.loaded_netrw = 1
@@ -52,8 +55,10 @@ vim.opt.fillchars = {
   vert = " ", -- set vsplit chars
 }
 vim.opt.list = true
+vim.opt.listchars:append("tab:· ")
 -- vim.opt.listchars:append "space:·"
--- vim.opt.listchars:append "eol:↴"
+-- vim.opt.listchars:append "trail:·"
+vim.opt.listchars:append("eol:↴")
 
 vim.cmd("set whichwrap+=<,>,h,l")
 
@@ -61,9 +66,12 @@ vim.cmd("let g:bookmark_no_default_key_mappings = 1")
 
 vim.o.pumheight = 15
 
-vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldcolumn = "0" -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-vim.cmd[[set fillchars=eob:\ ,fold:\ ,foldopen:,foldsep:\ ,foldclose:⯈]]
+vim.g.codeium_disable_bindings = 1
+
+vim.cmd([[set fillchars=eob:\ ,fold:\ ,foldopen:,foldsep:\ ,foldclose:⯈]])
+vim.cmd([[let g:bookmark_auto_save_file = $XDG_DATA_HOME .'/nvim/bookmarks']])
