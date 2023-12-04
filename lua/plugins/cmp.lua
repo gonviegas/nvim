@@ -31,16 +31,22 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.scroll_docs(-4),
         ["<C-j>"] = cmp.mapping.scroll_docs(4),
-        -- ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-Space>"] = cmp.mapping(function(fallback)
+        ["<C-X>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.close()
-          elseif not cmp.visible() then
-            cmp.complete()
           else
             fallback()
           end
         end, { "i", "s" }),
+        -- ["<C-Space>"] = cmp.mapping(function(fallback)
+        --   if cmp.visible() then
+        --     cmp.close()
+        --   elseif not cmp.visible() then
+        --     cmp.complete()
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
         ["<S-CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
@@ -51,14 +57,16 @@ return {
         }),
 
         ["<Tab>"] = cmp.mapping(function(fallback)
+          -- if not cmp.visible() then
+          -- cmp.complete()
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- they way you will only jump inside the snippet region
-            -- elseif luasnip.expand_or_jumpable() then
-            -- luasnip.expand_or_jump()
-            -- elseif has_words_before() then
-            -- cmp.complete()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
@@ -67,18 +75,18 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-            -- elseif luasnip.jumpable(-1) then
-            -- luasnip.jump(-1)
+            elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "buffer" },
-        { name = "path" },
         { name = "codeium", max_item_count = 5 },
         -- { name = "cmp_tabnine", max_item_count = 3 },
+        { name = "path" },
+        { name = "buffer" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
       }),
@@ -104,12 +112,12 @@ return {
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = "  " .. (strings[1] or "") .. "  " .. (strings[2] or "")
 
-          -- if entry.source.name == "buffer" then
-          -- 	vim_item.kind = "  " .. "x" .. " " .. "buffer"
-          -- end
+          if entry.source.name == "buffer" then
+            vim_item.kind = "  " .. "β" .. "  " .. "buffer"
+          end
 
           if entry.source.name == "codeium" then
-            vim_item.kind = "  " .. "⚡" .. " " .. "Codeium"
+            vim_item.kind = "  " .. "{}" .. " " .. "Codeium"
           end
 
           -- if entry.source.name == "cmp_tabnine" then

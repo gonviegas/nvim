@@ -10,7 +10,7 @@ return {
   },
   config = function()
     vim.diagnostic.config({
-      update_in_insert = true,
+      update_in_insert = false,
       virtual_text = {
         prefix = "●",
         source = "if_many",
