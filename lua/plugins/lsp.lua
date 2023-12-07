@@ -42,17 +42,14 @@ return {
       local lsp_formatting = function(bufnr)
         vim.lsp.buf.format({
           filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
             return client.name == "null-ls"
           end,
           bufnr = bufnr,
         })
       end
 
-      -- if you want to set up formatting on save, you can use this as a callback
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-      -- add to your shared on_attach callback
       if _.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -92,13 +89,13 @@ return {
       tailwindcss = {},
       tsserver = {},
       yamlls = {},
-      eslint = {},
     }
 
     local linters_and_formatters = {
       "prettierd",
       "stylua",
       "beautysh",
+      "eslint_d",
     }
 
     local flags = {
@@ -123,6 +120,7 @@ return {
 
     null_ls.setup({
       sources = {
+        null_ls.builtins.diagnostics.eslint_d.with({}),
         null_ls.builtins.formatting.beautysh.with({
           command = "beautysh",
           args = {

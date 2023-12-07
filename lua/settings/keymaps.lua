@@ -109,6 +109,7 @@ map(
 map("n", "<space>n", ":NvimTreeToggle<CR>", opts, "EXPLORER", "NvimTreeToggle", "Toggle File Explorer")
 
 -- LSP
+map("n", "<leader>r", ":LspRestart<cr>", opts, "LSP", "LspRestart", "Restart LSP")
 map(
   "n",
   "g[",

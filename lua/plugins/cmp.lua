@@ -75,7 +75,7 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
+          elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
             fallback()
@@ -85,7 +85,7 @@ return {
       sources = cmp.config.sources({
         { name = "codeium", max_item_count = 5 },
         -- { name = "cmp_tabnine", max_item_count = 3 },
-        { name = "path" },
+        { name = "path", max_item_count = 5 },
         { name = "buffer" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
@@ -113,7 +113,7 @@ return {
           kind.kind = "  " .. (strings[1] or "") .. "  " .. (strings[2] or "")
 
           if entry.source.name == "buffer" then
-            vim_item.kind = "  " .. "β" .. "  " .. "buffer"
+            vim_item.kind = "  " .. "β" .. "  " .. "Buffer"
           end
 
           if entry.source.name == "codeium" then
