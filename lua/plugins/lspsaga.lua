@@ -1,7 +1,9 @@
 return {
-  "glepnir/lspsaga.nvim",
-  event = "BufRead",
-  enable = false,
+  "nvimdev/lspsaga.nvim",
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter", -- optional
+    "nvim-tree/nvim-web-devicons", -- optional
+  },
   config = function()
     vim.cmd("hi! link SagaNormal NormalFloat")
 
@@ -22,9 +24,12 @@ return {
         custom_fix = "Fix:",
         border_follow = false,
       },
-      rename_action_keys = {
-        quit = "<Esc>",
-        exec = "<CR>",
+      rename = {
+        in_select = false,
+        keys = {
+          exec = "<CR>",
+          quit = "<Esc>",
+        },
       },
     })
   end,

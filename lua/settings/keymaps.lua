@@ -141,6 +141,8 @@ map("n", "gk", "<cmd>Lspsaga hover_doc<CR>", opts, "LSP", "lsp.buf.hover", "Hove
 map("n", "g<C-k>", "<cmd>Lspsaga hover_doc ++keep<CR>", opts, "LSP", "lsp.buf.hover_keep", "Hover Documentation")
 map("n", "gK", vim.lsp.buf.signature_help, opts, "LSP", "lsp.buf.signature_help", "Signature Documentation")
 map("n", "gC", vim.lsp.buf.declaration, opts, "LSP", "lsp.buf.declaration", "[G]oto De[C]laration")
+map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts, "LSP SAGA", "peek_definition", "Peek definition")
+map("n", "g<S-d>", "<cmd>Lspsaga goto_definition<CR>", opts, "LSP SAGA", "goto_definition", "Go to definition")
 map(
   "n",
   "gr",
@@ -150,15 +152,15 @@ map(
   "TroubleToggle_lsp_references",
   "Show references"
 )
-map(
-  "n",
-  "gd",
-  ":TroubleToggle lsp_definitions<CR>",
-  opts,
-  "LSP-TROUBLE",
-  "TroubleToggle_lsp_definitions",
-  "Show definitions"
-)
+-- map(
+--   "n",
+--   "gd",
+--   ":TroubleToggle lsp_definitions<CR>",
+--   opts,
+--   "LSP-TROUBLE",
+--   "TroubleToggle_lsp_definitions",
+--   "Show definitions"
+-- )
 map(
   "n",
   "gi",
@@ -171,6 +173,15 @@ map(
 map(
   "n",
   "gt",
+  "<cmd>Lspsaga peek_type_definition<CR>",
+  opts,
+  "LSP SAGA",
+  "peek_type_definition",
+  "Peek type definition"
+)
+map(
+  "n",
+  "g<S-t>",
   ":TroubleToggle lsp_type_definitions<CR>",
   opts,
   "LSP-TROUBLE",

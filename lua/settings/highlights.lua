@@ -78,7 +78,7 @@ vim.cmd("hi! NvimTreeIndentMarker guifg=" .. c.gray5a)
 -- vim.cmd("hi! BufferLineModifiedVisible gui=none" .. " guibg=" .. d.bg)
 -- vim.cmd("hi! BufferLineBackground gui=none")
 --
-vim.cmd("hi! Search guifg=#282828 guibg=#fabd2f")
+vim.cmd("hi! Search guifg=#282828 guibg=#faa00f")
 
 vim.cmd("hi! TreesitterContext guibg=" .. d.bg2)
 vim.cmd("hi! TreesitterContextLineNumber guifg=#525053 guibg=" .. d.bg2)

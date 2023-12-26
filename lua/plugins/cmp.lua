@@ -31,22 +31,22 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-k>"] = cmp.mapping.scroll_docs(-4),
         ["<C-j>"] = cmp.mapping.scroll_docs(4),
-        ["<C-X>"] = cmp.mapping(function(fallback)
+        ["<S-z>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.close()
           else
             fallback()
           end
         end, { "i", "s" }),
-        -- ["<C-Space>"] = cmp.mapping(function(fallback)
-        --   if cmp.visible() then
-        --     cmp.close()
-        --   elseif not cmp.visible() then
-        --     cmp.complete()
-        --   else
-        --     fallback()
-        --   end
-        -- end, { "i", "s" }),
+        ["<C-Space>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.close()
+          elseif not cmp.visible() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<S-CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
@@ -55,10 +55,7 @@ return {
           behavior = cmp.ConfirmBehavior,
           select = false,
         }),
-
         ["<Tab>"] = cmp.mapping(function(fallback)
-          -- if not cmp.visible() then
-          -- cmp.complete()
           if cmp.visible() then
             cmp.select_next_item()
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -73,7 +70,9 @@ return {
         end, { "i", "s" }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if not cmp.visible() then
+            cmp.complete()
+          elseif cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
@@ -83,10 +82,10 @@ return {
         end, { "i", "s" }),
       }),
       sources = cmp.config.sources({
-        { name = "codeium", max_item_count = 5 },
+        { name = "path" },
+        { name = "codeium", max_item_count = 3 },
         -- { name = "cmp_tabnine", max_item_count = 3 },
-        { name = "path", max_item_count = 5 },
-        { name = "buffer" },
+        { name = "buffer", max_item_count = 3 },
         { name = "nvim_lsp" },
         { name = "luasnip" },
       }),

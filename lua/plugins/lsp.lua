@@ -13,7 +13,7 @@ return {
       update_in_insert = false,
       virtual_text = {
         prefix = "●",
-        source = "if_many",
+        -- source = "if_many",
       },
     })
 
@@ -120,7 +120,11 @@ return {
 
     null_ls.setup({
       sources = {
-        null_ls.builtins.diagnostics.eslint_d.with({}),
+        null_ls.builtins.diagnostics.eslint_d.with({
+          filter = function(diagnostic)
+            return diagnostic.code
+        end,
+        }),
         null_ls.builtins.formatting.beautysh.with({
           command = "beautysh",
           args = {
